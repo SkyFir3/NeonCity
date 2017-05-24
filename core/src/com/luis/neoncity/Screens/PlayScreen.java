@@ -93,6 +93,16 @@ public class PlayScreen implements Screen {
             taxesCollected = false;
 
 
+
+        //TODO: this doesnt work, find a way to make it work
+        if((System.currentTimeMillis()-startTime)/1000/12 <1)
+            city.collectTaxes();
+
+        if(city.getPopulation() >= 2500)
+            hud.endLabel.setText("YOU WIN!");
+        if(city.getHappiness() <= 0)
+            hud.endLabel.setText("YOU LOSE!");
+
     }
 
     @Override

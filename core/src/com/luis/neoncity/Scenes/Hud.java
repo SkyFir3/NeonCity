@@ -26,16 +26,19 @@ import com.luis.neoncity.Tools.City;
  * Created by Luis and Jacob on 5/9/2017.
  */
 
-public class Hud implements InputProcessor{
+public class Hud implements InputProcessor {
     public enum State {
-        BULLDOZER,  ROAD,
-        RAIL,       POWER,
-        PARK,       RESIDENTIAL,
+        BULLDOZER, ROAD,
+        RAIL, POWER,
+        PARK, RESIDENTIAL,
         COMMERCIAL, INDUSTRIAL,
-        FIRE,       POLICE,
-        STADIUM,    SEAPORT,
-        COAL,       NUCLEAR,
-        AIRPORT,    DRAG};
+        FIRE, POLICE,
+        STADIUM, SEAPORT,
+        COAL, NUCLEAR,
+        AIRPORT, DRAG
+    }
+
+    ;
     public State currentState;
     private SpriteDrawable icon;
     private Sprite sprite;
@@ -49,6 +52,7 @@ public class Hud implements InputProcessor{
     public Label popLabel;
     public Label nameLabel;
     public Label timeLabel;
+    public Label endLabel;
 
     private Label powLabel;
     private  Label hapLabel;
@@ -63,8 +67,7 @@ public class Hud implements InputProcessor{
 
         try {
             skin = new Skin(Gdx.files.internal("uiskin.json"));
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             skin = new Skin();
         }
 
@@ -87,27 +90,33 @@ public class Hud implements InputProcessor{
         fundsLabel = new Label("$" + String.format("%07d", city.getFunds()), style);
         popLabel = new Label(String.format("%08d", city.getPopulation()), style);
         nameLabel = new Label(city.getCityName(), style);
+
+        endLabel = new Label("", style);
+        endLabel.setPosition(Gdx.graphics.getWidth() / 2 - 150, Gdx.graphics.getHeight() / 2);
+
         timeLabel = new Label("00:00",style);
         powLabel = new Label(String.format("%04d", city.getPower()), style);
         hapLabel = new Label("%03d" + city.getHappiness(), style);
         polLabel = new Label(String.format("%03d", city.getPollution()), style);
 
+
         table.add(timeLabel).expandX().padTop(10);
         table.add(nameLabel).expandX().padTop(10);
         table.add(fundsLabel).expandX().padTop(10);
         table.add(popLabel).expandX().padTop(10);
-
         table.row();
-
         table.add(powLabel).expandX();
         table.add(hapLabel).expandX();
         table.add(polLabel).expandX();
-
+        
+      stage.addActor(cursor);
+        stage.addActor(endLabel);
         stage.addActor(table);
     }
 
-    public void sideButtons(){
+    public void sideButtons() {
         int count = 0;
+
         for(int r = 1; r <= 8; r++) {
             for(int c = 1; c <= 2; c++)
             {
@@ -319,6 +328,8 @@ public class Hud implements InputProcessor{
             }
         }
     }
+}
+
 
     @Override
     public boolean keyDown(int keycode) {
