@@ -81,8 +81,13 @@ public class PlayScreen implements Screen {
         hud.timeLabel.setText(String.format("%1d-%4d" , (System.currentTimeMillis()-startTime)/1000/12, (System.currentTimeMillis()-startTime)/1000%12));
 
         //TODO: this doesnt work, find a way to make it work
-        //if(0 == System.currentTimeMillis()-startTime/1000%12)
-        //    city.collectTaxes();
+        if((System.currentTimeMillis()-startTime)/1000/12 <1)
+            city.collectTaxes();
+
+        if(city.getPopulation() >= 2500)
+            hud.endLabel.setText("YOU WIN!");
+        if(city.getHappiness() <= 0)
+            hud.endLabel.setText("YOU LOSE!");
     }
 
     @Override
