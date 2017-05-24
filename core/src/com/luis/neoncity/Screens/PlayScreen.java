@@ -26,17 +26,17 @@ public class PlayScreen implements Screen {
     private NeonCity game;
     public City city;
 
-    public  OrthographicCamera gameCam;
     private Viewport gamePort;
     private Hud hud;
     public Stage stage;
-    SpriteBatch spriteBatch;
+    public SpriteBatch spriteBatch;
+    public  OrthographicCamera gameCam;
 
     private TmxMapLoader mapLoader;
     private TiledMap map;
     private OrthogonalTiledMapRenderer renderer;
-
     private long startTime = System.currentTimeMillis();
+    private boolean taxesCollected;
 
     public PlayScreen(NeonCity game, SpriteBatch sb, City city, String mapName) {
         this.game = game;
@@ -66,6 +66,7 @@ public class PlayScreen implements Screen {
 
         stage = new TiledMapStage(gamePort, map, city, hud);
 
+        taxesCollected = true;
         InputMultiplexer im = new InputMultiplexer(hud.stage, stage,hud );
         Gdx.input.setInputProcessor(im);
     }
@@ -78,7 +79,20 @@ public class PlayScreen implements Screen {
     public void update(float dt) {
         gameCam.update();
         renderer.setView(gameCam);
+        int month = (int)(System.currentTimeMillis()-startTime)/1000;
         hud.timeLabel.setText(String.format("%1d-%4d" , (System.currentTimeMillis()-startTime)/1000/12, (System.currentTimeMillis()-startTime)/1000%12));
+        hud.fundsLabel.setText("$" + String.format("%07d", city.getFunds()));
+        hud.popLabel.setText("" + String.format("%07d", city.getPopulation()));
+        hud.timeLabel.setText(""+(System.currentTimeMillis()-startTime)/1000);
+
+        if(month%12 == 0 && !taxesCollected) {
+            taxesCollected = true;
+            city.collectTaxes();
+        }
+        else if(month%12 == 1 && !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!taxesCollected)
+            taxesCollected = false;
+
+
 
         //TODO: this doesnt work, find a way to make it work
         if((System.currentTimeMillis()-startTime)/1000/12 <1)
@@ -88,6 +102,7 @@ public class PlayScreen implements Screen {
             hud.endLabel.setText("YOU WIN!");
         if(city.getHappiness() <= 0)
             hud.endLabel.setText("YOU LOSE!");
+
     }
 
     @Override

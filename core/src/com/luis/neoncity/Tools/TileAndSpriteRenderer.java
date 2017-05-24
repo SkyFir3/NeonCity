@@ -5,7 +5,7 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.luis.neoncity.Buildings.Building;
 
 /**
- * Created by nl383118 on 5/17/2017.
+ * Created by Jacob on 5/17/2017.
  */
 
 public class TileAndSpriteRenderer extends OrthogonalTiledMapRenderer {

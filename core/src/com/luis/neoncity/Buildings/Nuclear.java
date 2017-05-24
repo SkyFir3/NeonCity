@@ -15,13 +15,20 @@ import com.luis.neoncity.Tools.City;
 
 public class Nuclear extends Building {
 
-    public Nuclear(Vector3 loc, City contains, Boolean inUse){
-        super(loc, contains, inUse, 4, 5000);
+    protected int powerAdded;
+    protected Vector3 loc;
+    protected Skin skin;
+
+    public Nuclear(Vector3 local, City city, Boolean inUse){
+        super(local, city, inUse, 4, 5000);
+
+        loc = local;
 
         sprite = new Image(new Texture("nuclear.png"));
         sprite.setPosition(loc.x, loc.y);
 
-        Skin skin;
+
+
         try {
             skin = new Skin(Gdx.files.internal("uiskin.json"));
         }
@@ -31,15 +38,23 @@ public class Nuclear extends Building {
 
         populationNeeded = (int)(Math.random()*15+30); //random requirement of residents
         pollutionCreated = 15; //specific pollution to building type
-        int powerAdded = populationNeeded*5;
+        powerAdded = populationNeeded*5;
 
+
+    }
+
+    public void addFunction()
+    {
         if(city.getPopulation() >  populationNeeded)
         {
+            inUse = true;
+            city.setPollution(city.getPollution() + pollutionCreated);
             city.setPopulation(city.getPopulation()-populationNeeded);
-            city.setPower(city.getPower()+powerAdded);
             pop = new Label(""+powerAdded, skin);
             pop.setPosition(loc.x+1, loc.y+1);
             pop.setColor(Color.BLACK);
         }
+        if(inUse)
+        city.setPower(city.getPower()+powerAdded);
     }
 }

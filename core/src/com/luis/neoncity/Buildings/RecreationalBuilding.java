@@ -10,7 +10,7 @@ import com.luis.neoncity.Tools.City;
  * Created by Luis on 5/15/2017 and Changed by Zach on 5/16/17.
  */
 
-public class RecreationalBuilding extends Building { //implements Building{
+public class RecreationalBuilding extends Building {
     protected int happinessAdded;
 
     public RecreationalBuilding(Vector3 loc, City city, Boolean inUse){

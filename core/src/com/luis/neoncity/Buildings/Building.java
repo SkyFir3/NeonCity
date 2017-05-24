@@ -8,20 +8,20 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.luis.neoncity.Input.TiledMapStage;
 import com.luis.neoncity.Tools.City;
+
 /**
- * Created by Luis on 5/15/2017 and Changed by Zach on 5/16/17.
+ * Created by Luis on 5/15/2017 and Changed by Zach on 5/23/17.
  */
 
 public class Building extends Actor {
 
     protected Vector3 location;
-    City city;
-    Boolean inUse;
-    public Label pop;
-    int populationNeeded, pollutionCreated, powerNeeded;
+    protected City city;
+    protected int populationNeeded, pollutionCreated, powerNeeded;
 
+    public Boolean inUse;
+    public Label pop;
     public Image sprite;
     public int size;
     public int cost;
@@ -42,15 +42,12 @@ public class Building extends Actor {
         }
 
         pop = new Label("", skin);
-        pop.setScale(.5f);
+
         location = loc;
         this.city = city;
         this.inUse = inUse;
         this.size = size;
         this.cost = cost;
-
-
-
     }
 
     public void setTilesUnusable(){
@@ -79,5 +76,10 @@ public class Building extends Actor {
     {
             if(inUse)
             city.setPollution(city.getPollution() + pollutionCreated);
+    }
+
+    public void addFunction()
+    {
+
     }
 }

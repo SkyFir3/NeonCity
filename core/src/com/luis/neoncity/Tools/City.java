@@ -4,7 +4,7 @@ import com.luis.neoncity.Buildings.Building;
 import java.util.ArrayList;
 
 /**
- * Created by Luis on 5/16/2017  and Changed by Zach on 5/16/17.
+ * Created by Luis on 5/16/2017 and Changed by Zach on 5/20/17.
  */
 
 public class City {
@@ -12,7 +12,7 @@ public class City {
     private Integer funds;
     private Integer population;
     private Integer pollution;
-    private Double happiness;
+    private Integer happiness;
     private Integer power;
     public Tile[][] tiles;
     public int months;
@@ -25,7 +25,7 @@ public class City {
         this.funds = funds;
         this.population = 500;
         pollution = 0;
-        happiness = 100.00;
+        happiness = 100;
         power = 100;
         buildings = new ArrayList<Building>();
         tiles = new Tile[256][256];
@@ -35,7 +35,8 @@ public class City {
 
     public void collectTaxes(){
 
-        setFunds (Integer.sum((int)Math.ceil(population * 2), funds.intValue()));
+        setFunds (Integer.sum((int)Math.ceil(population * 20), funds.intValue()));
+        happiness = happiness - (int)(happiness/10);
     }
 
     public String getCityName() {
@@ -72,12 +73,12 @@ public class City {
         this.pollution = pollution;
     }
 
-    public Double getHappiness()
+    public Integer getHappiness()
     {
-        return happiness/100;
+        return happiness;
     }
 
-    public void setHappiness(Double happiness)
+    public void setHappiness(Integer happiness)
     {
         this.happiness = happiness;
     }

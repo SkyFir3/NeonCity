@@ -20,8 +20,6 @@ import com.luis.neoncity.NeonCity;
 import com.luis.neoncity.Tools.City;
 import com.luis.neoncity.Tools.TextInput;
 
-import java.util.concurrent.ExecutionException;
-
 /**
  * Created by jz367071 on 5/18/2017.
  */
@@ -131,11 +129,11 @@ public class CityCreator implements Screen {
                 try {
 
                 if(cityDifficulty.getSelected().equals("Easy"))
-                    cityFunds = 20000;
-                else if(cityDifficulty.getSelected().equals("Medium"))
                     cityFunds = 10000;
+                else if(cityDifficulty.getSelected().equals("Medium"))
+                    cityFunds = 50000;
                 else if(cityDifficulty.getSelected().equals("Hard"))
-                    cityFunds = 5000;
+                    cityFunds = 3000;
                 else
                     cityFunds = 0;
                 }

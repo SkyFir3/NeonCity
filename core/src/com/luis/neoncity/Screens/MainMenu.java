@@ -15,7 +15,7 @@ import com.luis.neoncity.NeonCity;
 import com.luis.neoncity.Tools.TextInput;
 
 /**
- * Created by jz367071 on 5/12/2017.
+ * Created by Zach on 5/12/2017.
  */
 
 public class MainMenu implements Screen {
@@ -77,7 +77,6 @@ public class MainMenu implements Screen {
         japanese.setScale(.5f);
 
         //adding image and button to display in order
-
         stage.addActor(sprite);
         stage.addActor(title);
         stage.addActor(japanese);
